@@ -205,7 +205,7 @@ module ApplianceConsole
         :disk              => disk_from_string(options[:dbdisk]),
         :run_as_evm_server => !options[:standalone]
       }.delete_if { |_n, v| v.nil? })
-      config.check_disk_is_mount_point
+      config.check_disk_is_mount_point unless ENV["CONTAINER"]
 
       # create partition, pv, vg, lv, ext4, update fstab, mount disk
       # initdb, relabel log directory for selinux, update configs,
